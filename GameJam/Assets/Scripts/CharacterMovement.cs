@@ -3,12 +3,12 @@ using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-[RequireComponent(typeof(Animator))]
 public class CharacterMovement : EntityComponent<Character> {
 
 	private Rigidbody rb;
-	private Animator animator;
+	private Animator anim;
 	public float speed;
+	public float maxSpeed;
 	public float rotSpeed;
 
 	private bool isJumping;
@@ -16,13 +16,7 @@ public class CharacterMovement : EntityComponent<Character> {
 	public float jumpIntensity = 5;
 	public float raycastLenght= 1;
 	public LayerMask jumpDetection;
-	public bool IsJumping {
-		get => isJumping;
-		set {
-			isJumping = value;
-			animator.SetBool("isJumping",value);
-		}
-	}
+	
 
 	protected override void Awake() {
 		base.Awake();
@@ -35,28 +29,30 @@ public class CharacterMovement : EntityComponent<Character> {
 
 	private void ManageJump() {
 
-		canJump = Physics.Raycast(transform.position, Vector3.down,raycastLenght,jumpDetection);
-		Debug.Log(canJump);
-
 		// if (Entity.currentPhase != Character.CharPhase.One) {
-			if (Entity.player.GetButtonDown("Jump")) {
-				if (canJump) {
-					IsJumping = true;
-					rb.AddForce(Vector3.up * jumpIntensity,ForceMode.Impulse);
-				}
+			if (Entity.player.GetButtonDown("Jump") && IsGrounded()) {
+				Debug.Log("Jump");
+				rb.AddForce(Vector3.up * (jumpIntensity*10 * Time.fixedDeltaTime),ForceMode.Impulse);
 			}
 		// }
 	}
 
 	private void FixedUpdate() {
-		ManageMovement();
 		ManageRotation();
+		ManageMovement();
 	}
 
 	private void ManageMovement() {
 		var z = Entity.player.GetAxis("MoveV");
-		z = Mathf.Clamp(z, 0, 100000);
-		rb.velocity = transform.forward * (speed * z);
+		if (z > 0 && IsGrounded()) {
+			if (rb.velocity.magnitude < maxSpeed) {
+				rb.velocity += transform.forward * (z * (speed * Time.fixedDeltaTime));
+				rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxSpeed);
+			}
+		}
+		if (z == 0 && IsGrounded()) {
+			rb.velocity = Vector3.zero;
+		}
 	}
 
 	private void ManageRotation() {
@@ -66,6 +62,15 @@ public class CharacterMovement : EntityComponent<Character> {
 
 	private void OnDrawGizmosSelected() {
 		Gizmos.color= Color.magenta;
-		Gizmos.DrawRay(transform.position , Vector3.down);
+		Gizmos.DrawCube(transform.position , Vector3.one/9);
+	}
+
+	private bool IsGrounded() {
+		var hit = Physics.OverlapBox(transform.position, Vector3.one/9, Quaternion.identity,jumpDetection);
+		Debug.Log(hit);
+		if (hit.Length>0) {
+			return true;
+		}
+		return false;
 	}
 }
