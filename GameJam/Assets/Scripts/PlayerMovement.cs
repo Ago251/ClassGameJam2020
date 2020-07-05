@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     private Player player;
     private CharacterController controller;
 
+    public bool canJump;
     public float speed = 10;
 
     public Transform groundCheck;
@@ -34,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
         Vector3 move = transform.right * x + transform.forward * z; 
         controller.Move(move * (speed * Time.deltaTime));
         
-        if (player.GetButtonDown("Jump") && isGrounded) {
+        if (canJump && player.GetButtonDown("Jump") && isGrounded) {
             vel.y = Mathf.Sqrt(jumpH * -2f * -9.81f);
         }
         vel.y -= 9.81f * Time.deltaTime;
