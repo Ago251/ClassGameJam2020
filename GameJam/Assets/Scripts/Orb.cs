@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections;
-using Boo.Lang.Environments;
 using UnityEngine;
 using UnityEngine.VFX;
 
@@ -12,7 +11,6 @@ public class Orb : MonoBehaviour {
 	private float actualDissipation = 1;
 	public GameObject obj;
 	public Color color;
-	public Material material;
 
 	private void Awake() {
 		vfx = GetComponent<VisualEffect>();
