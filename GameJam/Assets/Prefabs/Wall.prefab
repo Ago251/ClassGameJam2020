@@ -56,13 +56,13 @@ VisualEffect:
       - m_Value: 2.3
         m_Name: Size
         m_Overridden: 1
-      - m_Value: 50000
+      - m_Value: 25000
         m_Name: SpawnRate
         m_Overridden: 1
       - m_Value: 7
         m_Name: Dissipazione
         m_Overridden: 1
-      - m_Value: 157
+      - m_Value: 100
         m_Name: TrailsSpawnRate
         m_Overridden: 1
     m_Vector2f:
