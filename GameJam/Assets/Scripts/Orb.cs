@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using Boo.Lang.Environments;
 using UnityEngine;
 using UnityEngine.VFX;
 
@@ -11,10 +12,11 @@ public class Orb : MonoBehaviour {
 	private float actualDissipation = 1;
 	public GameObject obj;
 	public Color color;
+	public Material material;
 
 	private void Awake() {
 		vfx = GetComponent<VisualEffect>();
-		orbDestroyed += () => obj.GetComponent<MeshRenderer>().material.color = color;
+		orbDestroyed += ActivePlatform;
 	}
 
 	private IEnumerator OrbDissipation() {
@@ -26,6 +28,11 @@ public class Orb : MonoBehaviour {
 		}
 		orbDestroyed?.Invoke();
 		Destroy(gameObject);
+	}
+
+	private void ActivePlatform() {
+		obj.GetComponent<Renderer>().material = material;
+		obj.GetComponent<MeshRenderer>().material.color = color;
 	}
 	
 	public void Dissipate() {
