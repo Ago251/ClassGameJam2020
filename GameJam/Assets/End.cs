@@ -40,7 +40,7 @@ public class End : MonoBehaviour {
         yield return new WaitForSecondsRealtime(2f);
         audio.Play();
         image.sprite = monster;
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(4f);
         Application.Quit();
     }
 }
