@@ -420,7 +420,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 630ed280197223946bf47ae685fb165b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canJump: 1
+  canJump: 0
   speed: 1.4
   groundCheck: {fileID: 4662524678009568027}
   groundMask:
@@ -462,6 +462,7 @@ MonoBehaviour:
   thirdWall: {fileID: 0}
   character: {fileID: 446954986504975217}
   bigCamera: {fileID: 1699152465}
+  end: {fileID: 0}
 --- !u!1 &446954987334745891
 GameObject:
   m_ObjectHideFlags: 0

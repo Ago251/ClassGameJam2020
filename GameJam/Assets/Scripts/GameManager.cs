@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour {
 	public PlayerMovement character;
 
 	public CinemachineVirtualCamera bigCamera;
+	public GameObject end;
 
 	void Start() {
 		Cursor.visible = false;
@@ -85,5 +86,6 @@ public class GameManager : MonoBehaviour {
 			character.transform.localScale += new Vector3(Time.deltaTime,Time.deltaTime,Time.deltaTime)/3;
 			yield return null;
 		}
+		end.SetActive(true);
 	}
 }
