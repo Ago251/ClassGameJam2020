@@ -50,7 +50,7 @@ CharacterController:
   m_Height: 2
   m_Radius: 0.5
   m_SlopeLimit: 45
-  m_StepOffset: 0.3
+  m_StepOffset: 0.1
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1, z: 0}
@@ -67,12 +67,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canJump: 0
-  speed: 2
+  speed: 1.4
   groundCheck: {fileID: 4662524678009568027}
   groundMask:
     serializedVersion: 2
     m_Bits: 512
-  jumpH: 1
+  jumpH: 0.5
 --- !u!54 &1137627716
 Rigidbody:
   m_ObjectHideFlags: 0
