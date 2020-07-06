@@ -14,17 +14,17 @@ public class GameManager : MonoBehaviour {
 
 	public GameObject thirdWall;
 
-	private event Action ReallocatePlayer;
 
 	public PlayerMovement character;
 
 	public CinemachineVirtualCamera bigCamera;
 
 	void Start() {
-		ReallocatePlayer += CharacterToCenter;
-		character.canJump = false;
+		Cursor.visible = false;
 		firstOrb.orbDestroyed += EnableJumpToPlayer;
 		secondOrb.orbDestroyed += () => RemoveWall(3);
+		thirdOrb.orbDestroyed += Grow;
+		secondOrb.gameObject.SetActive(false);
 	}
 
 	private void Update() {
@@ -32,11 +32,14 @@ public class GameManager : MonoBehaviour {
 			if (firstOrb != null) {
 				if (Vector3.Distance(character.transform.position, firstOrb.transform.position) < 2f) {
 					firstOrb.Dissipate();
+					secondOrb.gameObject.SetActive(true);
+					return;
 				}
 			}
 			if (secondOrb != null) {
 				if (Vector3.Distance(character.transform.position, secondOrb.transform.position) < 2f) {
 					secondOrb.Dissipate();
+					return;
 				}
 			}
 			if (thirdOrb != null) {
@@ -49,11 +52,14 @@ public class GameManager : MonoBehaviour {
 
 	private void EnableJumpToPlayer() {
 		character.canJump = true;
-		ReallocatePlayer?.Invoke();
+		CharacterToCenter();
 	}
 
 	private void CharacterToCenter() {
-		character.transform.position = mapCenter.position;
+		var cc = character.GetComponent<CharacterController>();
+		cc.enabled = false;
+		character.gameObject.transform.position = mapCenter.position;
+		cc.enabled = true;
 	}
 
 	private void RemoveWall(int id) {
@@ -67,6 +73,8 @@ public class GameManager : MonoBehaviour {
 
 	[Button]
 	public void Grow() {
+		bigCamera.gameObject.SetActive(true);
+		CharacterToCenter();
 		bigCamera.Priority = 100;
 		StartCoroutine(GrowRoutine());
 

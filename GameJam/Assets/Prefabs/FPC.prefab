@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: 1699152465}
   - component: {fileID: 1699152464}
   m_Layer: 0
-  m_Name: MainCam (1)
+  m_Name: BigCam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -119,7 +119,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1699152462}
-  m_LocalRotation: {x: 0.000085152584, y: 0.9998015, z: -0.019437065, w: 0.0043800687}
+  m_LocalRotation: {x: 0.000085152584, y: 0.9998015, z: -0.019437067, w: 0.0043800683}
   m_LocalPosition: {x: 0, y: 1.41, z: 2.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -256,7 +256,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2fc42b3e4c6fb64aaa2658b05c35719, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseSensitivity: 20
+  mouseSensitivity: 15
   playerBody: {fileID: 446954986504975216}
 --- !u!1 &1982937156
 GameObject:
@@ -420,7 +420,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 630ed280197223946bf47ae685fb165b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canJump: 0
+  canJump: 1
   speed: 1.4
   groundCheck: {fileID: 4662524678009568027}
   groundMask:
@@ -490,7 +490,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 446954987334745891}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.4100001, z: 0.16000001}
+  m_LocalPosition: {x: 0, y: 1.4100001, z: 0.15999794}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 446954986504975216}
@@ -576,7 +576,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ShowDebugText: 0
   m_ShowCameraFrustum: 1
-  m_IgnoreTimeScale: 0
+  m_IgnoreTimeScale: 1
   m_WorldUpOverride: {fileID: 0}
   m_UpdateMethod: 2
   m_BlendUpdateMethod: 1

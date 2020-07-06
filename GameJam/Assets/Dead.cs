@@ -1,16 +1,15 @@
 ﻿using UnityEngine;
 
 public class Dead : MonoBehaviour {
-    [SerializeField] private Transform spawn;
+    public Transform spawn;
 
-    private void Spawn(GameObject target) {
-        target.transform.position = spawn.position;
-    }
-
-    private void OnTriggerStay(Collider other) {
-        Debug.Log("Hit");
-        if (other.gameObject.CompareTag("Player")) {
-            Spawn(other.gameObject);
+    private void OnTriggerEnter(Collider other) {
+        Debug.Log(other.tag);
+        if (other.CompareTag("Player")) {
+            var cc = other.GetComponent<CharacterController>();
+            cc.enabled = false;
+            other.gameObject.transform.position = spawn.position;
+            cc.enabled = true;
         }
     }
 }
