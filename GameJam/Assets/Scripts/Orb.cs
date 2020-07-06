@@ -31,7 +31,6 @@ public class Orb : MonoBehaviour {
 	}
 
 	private void ActivePlatform() {
-		obj.GetComponent<Renderer>().material = material;
 		obj.GetComponent<MeshRenderer>().material.color = color;
 	}
 	
