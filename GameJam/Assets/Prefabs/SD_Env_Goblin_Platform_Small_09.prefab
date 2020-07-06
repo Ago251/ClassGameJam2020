@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4443074039975457180}
   - component: {fileID: 4443074039980641632}
   - component: {fileID: 4417066614667740590}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: SD_Env_Goblin_Platform_Small_09
   m_TagString: Untagged
   m_Icon: {fileID: 0}
