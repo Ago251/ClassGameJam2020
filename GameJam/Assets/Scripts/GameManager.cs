@@ -9,8 +9,7 @@ public class GameManager : MonoBehaviour {
     public Orb firstOrb;
     public Orb secondOrb;
     public Orb thirdOrb;
-
-    public GameObject secondWall;
+    
     public GameObject thirdWall;
 
     private event Action ReallocatePlayer;
@@ -23,6 +22,23 @@ public class GameManager : MonoBehaviour {
         firstOrb.orbDestroyed += () => RemoveWall(2);
         secondOrb.orbDestroyed += () => RemoveWall(3);
     }
+
+    private void Update() {
+        if (character.player.GetButtonDown("Interact")) {
+            if (Vector3.Distance(character.transform.position, firstOrb.transform.position) < 2f) {
+                firstOrb.Dissipate();
+            }
+            if (Vector3.Distance(character.transform.position, secondOrb.transform.position) < 2f) {
+                secondOrb.Dissipate();
+                
+            }
+            if (Vector3.Distance(character.transform.position, thirdOrb.transform.position) < 2f) {
+                thirdOrb.Dissipate();
+                
+            }
+        }
+    }
+
     private void EnableJumpToPlayer() {
         character.canJump = true;
         ReallocatePlayer?.Invoke();
@@ -34,9 +50,6 @@ public class GameManager : MonoBehaviour {
 
     private void RemoveWall(int id) {
         switch (id) {
-            case 2:
-                secondWall.gameObject.SetActive(false);
-                break;
             case 3:
                 thirdWall.gameObject.SetActive(false);
                 break;

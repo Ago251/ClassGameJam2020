@@ -9,9 +9,12 @@ public class Orb : MonoBehaviour {
 	public event Action orbDestroyed;
 	private VisualEffect vfx;
 	private float actualDissipation = 1;
+	public GameObject obj;
+	public Color color;
 
 	private void Awake() {
 		vfx = GetComponent<VisualEffect>();
+		orbDestroyed += () => obj.GetComponent<MeshRenderer>().material.color = color;
 	}
 
 	private IEnumerator OrbDissipation() {
@@ -24,7 +27,7 @@ public class Orb : MonoBehaviour {
 		orbDestroyed?.Invoke();
 		Destroy(gameObject);
 	}
-
+	
 	public void Dissipate() {
 		StartCoroutine(OrbDissipation());
 	}

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 492862276115231028}
   - component: {fileID: 492862276115231029}
   - component: {fileID: 9170612659202713153}
+  - component: {fileID: 7130067013982951097}
   m_Layer: 0
   m_Name: Wall
   m_TagString: Untagged
@@ -58,7 +59,7 @@ VisualEffect:
       - m_Value: 50000
         m_Name: SpawnRate
         m_Overridden: 1
-      - m_Value: 2
+      - m_Value: 7
         m_Name: Dissipazione
         m_Overridden: 1
       - m_Value: 157
@@ -143,3 +144,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d703278dfabea042a72406512ea6ef8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  obj: {fileID: 0}
+  color: {r: 0, g: 0, b: 0, a: 0}
+--- !u!65 &7130067013982951097
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 492862276115231034}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.148083, y: 22.285078, z: 22.422762}
+  m_Center: {x: 1.5740416, y: -1.1706698, z: -0.16552448}

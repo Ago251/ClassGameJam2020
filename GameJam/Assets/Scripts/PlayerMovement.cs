@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private Player player;
+    public Player player;
     private CharacterController controller;
 
     public bool canJump;
@@ -24,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
     
     // Update is called once per frame
     void Update() {
+        
         isGrounded = Physics.CheckSphere(groundCheck.position, 0.4f, groundMask);
 
         if (isGrounded && vel.y < 0) {
@@ -40,6 +41,7 @@ public class PlayerMovement : MonoBehaviour
         }
         vel.y -= 9.81f * Time.deltaTime;
         controller.Move(vel * Time.deltaTime);
-
     }
+    
+    
 }
