@@ -8,7 +8,7 @@ public class Dead : MonoBehaviour {
         target.transform.position = spawn.position;
     }
 
-    private void OnTriggerEnter(Collider other) {
+    private void OnTriggerStay(Collider other) {
         Debug.Log("Hit");
         if (other.gameObject.CompareTag("Player")) {
             Debug.Log("Hit player");

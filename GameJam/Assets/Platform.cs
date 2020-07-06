@@ -5,9 +5,11 @@ public class Platform : MonoBehaviour
 	public bool isActive;
 	public bool solution;
 	private Renderer renderer;
+	private Code puzzle;
 
 	private void Start() {
 		renderer = GetComponent<Renderer>();
+		puzzle = FindObjectOfType<Code>();
 	}
 
 	public void Active() {
@@ -22,7 +24,7 @@ public class Platform : MonoBehaviour
 	
 	private void OnTriggerEnter(Collider other) {
 		// Debug.Log("Hit");
-		if (other.gameObject.CompareTag("Player")) {
+		if (other.gameObject.CompareTag("Player") && !puzzle.completed) {
 			Active();
 		}
 	}
