@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour {
@@ -15,6 +17,8 @@ public class GameManager : MonoBehaviour {
 	private event Action ReallocatePlayer;
 
 	public PlayerMovement character;
+
+	public CinemachineVirtualCamera bigCamera;
 
 	void Start() {
 		ReallocatePlayer += CharacterToCenter;
@@ -59,5 +63,19 @@ public class GameManager : MonoBehaviour {
 				break;
 		}
 		CharacterToCenter();
+	}
+
+	[Button]
+	public void Grow() {
+		bigCamera.Priority = 100;
+		StartCoroutine(GrowRoutine());
+
+	}
+
+	private IEnumerator GrowRoutine() {
+		while (character.transform.localScale.x< 4) {
+			character.transform.localScale += new Vector3(Time.deltaTime,Time.deltaTime,Time.deltaTime)/3;
+			yield return null;
+		}
 	}
 }
